@@ -32,13 +32,13 @@ async function getMonaCoinLatestPrice(api: bitbank.PublicApi): Promise<number> {
 import { schedule } from 'node-cron';
 const main = async () => {
     // 毎時間
-    schedule('* * * *', async () => {
+    schedule('0 */1 * * *', async () => {
         const monaPrice = await getMonaCoinLatestPrice(bitbankApi);
         console.log('Got MONAJPY:', monaPrice);
 
         const message = "現在のモナンコインの価格は " + monaPrice + " です";
         bot.sendMessage(CHAT_ID, message);
-    })
+    });
 };
 
 main();

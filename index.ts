@@ -33,7 +33,7 @@ import { schedule } from 'node-cron';
 // const job = scheduleJob('0 * * * * *', () => {
 // });
 const main = async () => {
-    schedule('*/5 * * * * * *', async () => {
+    schedule('0 * * * * *', async () => {
         const monaPrice = await getMonaCoinLatestPrice(bitbankApi);
         console.log('Got MONAJPY:', monaPrice);
 

@@ -30,10 +30,9 @@ async function getMonaCoinLatestPrice(api: bitbank.PublicApi): Promise<number> {
 }
 
 import { schedule } from 'node-cron';
-// const job = scheduleJob('0 * * * * *', () => {
-// });
 const main = async () => {
-    schedule('0 * * * * *', async () => {
+    // 毎時間
+    schedule('* * * *', async () => {
         const monaPrice = await getMonaCoinLatestPrice(bitbankApi);
         console.log('Got MONAJPY:', monaPrice);
 

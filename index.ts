@@ -38,6 +38,6 @@ const main = async () => {
 };
 
 import { scheduleJob } from 'node-schedule';
-const job = scheduleJob('0 * * * *', async () => {
+const job = scheduleJob('0 * * * * *', async () => {
     await main();
  });

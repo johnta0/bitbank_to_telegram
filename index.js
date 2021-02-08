@@ -68,27 +68,26 @@ function getMonaCoinLatestPrice(api) {
         });
     });
 }
+var node_cron_1 = require("node-cron");
+// const job = scheduleJob('0 * * * * *', () => {
+// });
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var monaPrice, message;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, getMonaCoinLatestPrice(bitbankApi)];
-            case 1:
-                monaPrice = _a.sent();
-                message = "現在のモナンコインの価格は " + monaPrice + " です";
-                bot.sendMessage(CHAT_ID, message);
-                return [2 /*return*/];
-        }
+        node_cron_1.schedule('*/5 * * * * * *', function () { return __awaiter(void 0, void 0, void 0, function () {
+            var monaPrice, message;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, getMonaCoinLatestPrice(bitbankApi)];
+                    case 1:
+                        monaPrice = _a.sent();
+                        console.log('Got MONAJPY:', monaPrice);
+                        message = "現在のモナンコインの価格は " + monaPrice + " です";
+                        bot.sendMessage(CHAT_ID, message);
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        return [2 /*return*/];
     });
 }); };
-var node_schedule_1 = require("node-schedule");
-var job = node_schedule_1.scheduleJob('0 * * * * *', function () { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, main()];
-            case 1:
-                _a.sent();
-                return [2 /*return*/];
-        }
-    });
-}); });
+main();

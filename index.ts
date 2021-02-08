@@ -29,15 +29,17 @@ async function getMonaCoinLatestPrice(api: bitbank.PublicApi): Promise<number> {
     return +monaLastPrice;
 }
 
+import { schedule } from 'node-cron';
+// const job = scheduleJob('0 * * * * *', () => {
+// });
 const main = async () => {
-    const monaPrice = await getMonaCoinLatestPrice(bitbankApi);
-    // console.log(monaPrice);
+    schedule('*/5 * * * * * *', async () => {
+        const monaPrice = await getMonaCoinLatestPrice(bitbankApi);
+        console.log('Got MONAJPY:', monaPrice);
 
-    const message = "現在のモナンコインの価格は " + monaPrice + " です";
-    bot.sendMessage(CHAT_ID, message);
+        const message = "現在のモナンコインの価格は " + monaPrice + " です";
+        bot.sendMessage(CHAT_ID, message);
+    })
 };
 
-import { scheduleJob } from 'node-schedule';
-const job = scheduleJob('0 * * * * *', async () => {
-    await main();
- });
+main();

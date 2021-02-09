@@ -33,8 +33,8 @@ import { schedule } from 'node-cron';
 ;
 const main = async () => {
     console.info('=== App started ===');
-    // 毎時間
-    schedule('9,10,11,12,13,14,15,16/,17,18,19,20,21,22,23,24 * * *', async () => {
+    // Every 30 min
+    schedule('*/30 9,10,11,12,13,14,15,16,17,18,19,20, * * *', async () => {
     // schedule('*/5 * * * * *', async () => {
         console.info('価格取得開始');
         const monaPrice = await getMonaCoinLatestPrice(bitbankApi);

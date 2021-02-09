@@ -41,6 +41,8 @@ const main = async () => {
 
         const message = "現在のモナンコインの価格は " + monaPrice + " です";
         bot.sendMessage(CHAT_ID, message);
+    }, {
+        timezone: 'Asia/Tokyo',
     });
 };
 

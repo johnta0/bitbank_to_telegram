@@ -34,13 +34,14 @@ import { schedule } from 'node-cron';
 const main = async () => {
     console.info('=== App started ===');
     // 毎時間
-    schedule('* 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *', async () => {
+    schedule('9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24 * * *', async () => {
         console.info('価格取得開始');
         const monaPrice = await getMonaCoinLatestPrice(bitbankApi);
         console.info('Got MONAJPY:', monaPrice);
 
         const message = "現在のモナンコインの価格は " + monaPrice + " です";
         bot.sendMessage(CHAT_ID, message);
+        console.log('Telegram に通知しました');
     }, {
         timezone: 'Asia/Tokyo',
     });

@@ -35,9 +35,9 @@ const main = async () => {
     console.info('=== App started ===');
     // 毎時間
     schedule('* 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *', async () => {
-        console.log('価格取得開始');
+        console.info('価格取得開始');
         const monaPrice = await getMonaCoinLatestPrice(bitbankApi);
-        console.log('Got MONAJPY:', monaPrice);
+        console.info('Got MONAJPY:', monaPrice);
 
         const message = "現在のモナンコインの価格は " + monaPrice + " です";
         bot.sendMessage(CHAT_ID, message);

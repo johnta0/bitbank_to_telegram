@@ -13,9 +13,9 @@ const CHAT_ID = 698998391;
 
 const bitbankApi = new bitbank.PublicApi(bitbankApiConf);
 
-// import * as TelegramBot from 'node-telegram-bot-api';
-const TelegramBot = require('node-telegram-bot-api');
+import TelegramBot = require('node-telegram-bot-api');
 const telegramBotToken = process.env.TELEGRAM_CRYPTO_PRICE_BOT_TOKEN;
+if (!telegramBotToken) throw new Error('Bot token must be provided.');
 const bot = new TelegramBot(telegramBotToken, { polling: true });
 
 async function getMonaCoinLatestPrice(api: bitbank.PublicApi): Promise<number> {
@@ -30,9 +30,10 @@ async function getMonaCoinLatestPrice(api: bitbank.PublicApi): Promise<number> {
 }
 
 import { schedule } from 'node-cron';
+;
 const main = async () => {
     // 毎時間
-    schedule('0 */1 * * *', async () => {
+    schedule('* 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * *', async () => {
         const monaPrice = await getMonaCoinLatestPrice(bitbankApi);
         console.log('Got MONAJPY:', monaPrice);
 

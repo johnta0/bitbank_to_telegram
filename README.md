@@ -1,1 +1,1 @@
-# bitbank0to-Telegram alert bot
+# bitbank-to-Telegram alert bot
